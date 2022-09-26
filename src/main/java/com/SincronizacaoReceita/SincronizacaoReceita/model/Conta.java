@@ -1,8 +1,8 @@
 package com.SincronizacaoReceita.SincronizacaoReceita.model;
 
-import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvNumber;
+import org.apache.commons.lang3.StringUtils;
 
 public class Conta {
 

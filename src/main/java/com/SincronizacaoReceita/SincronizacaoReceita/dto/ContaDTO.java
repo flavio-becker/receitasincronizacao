@@ -1,11 +1,22 @@
 package com.SincronizacaoReceita.SincronizacaoReceita.dto;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 public class ContaDTO {
 
+    @CsvBindByPosition(position = 0)
     private String agencia;
+
+    @CsvBindByPosition(position = 1)
     private String conta;
+
+    @CsvBindByPosition(position = 2)
     private double saldo;
+
+    @CsvBindByPosition(position = 3)
     private String status;
+
+    @CsvBindByPosition(position = 4)
     private boolean statusReceita;
 
     public String getAgencia() {

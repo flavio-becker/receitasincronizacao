@@ -24,7 +24,6 @@ public class ContaService {
 
     public List<ContaDTO> sincronizaContaReceita(List<Conta> contas) {
 
-        contas.forEach(conta -> conta.setConta(removerCaracteresDaConta(conta)));
         List<ContaDTO> contasDTO = contas.stream()
                 .map(conta -> contaMapper.convertContaToContaDto(conta))
                 .collect(Collectors.toList());
@@ -41,16 +40,9 @@ public class ContaService {
         return contasDTO;
     }
 
-     private String removerCaracteresDaConta(Conta conta) {
-
-        String contaFormatada = conta.getConta().replaceAll("[^0-9]", "");
-
-        return contaFormatada;
-    }
-
     private boolean verificaStatusReceita(ContaDTO contaDTO) throws InterruptedException {
 
-        return receitaService.atualizarConta(contaDTO.getAgencia(), contaDTO.getConta(),
+        return receitaService.atualizarConta(contaDTO.getAgencia(), contaDTO.getConta().replaceAll("[^0-9]", ""),
                 contaDTO.getSaldo(), contaDTO.getStatus());
     }
 }

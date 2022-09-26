@@ -1,11 +1,15 @@
 package com.SincronizacaoReceita.SincronizacaoReceita.controller;
 
+import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaDTO;
 import com.SincronizacaoReceita.SincronizacaoReceita.model.Conta;
 import com.SincronizacaoReceita.SincronizacaoReceita.util.CSVConversor;
 import com.SincronizacaoReceita.SincronizacaoReceita.service.ContaService;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,13 +30,15 @@ public class ValidacaoReceitaController {
         this.csvConversor = csvConversor;
     }
 
-   @PostMapping
-    public ResponseEntity<List<Conta>> verificacaoReceita(String path) throws IOException {
+    @PostMapping
+    public ResponseEntity<List<ContaDTO>> verificacaoReceita(@RequestHeader(value = "path") String path) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
 
-       List<Conta> contas = csvConversor.conversorCSVtoConta(path);
-       contaService.sincronizaContaReceita(contas);
+        List<Conta> contas = csvConversor.conversorCSVtoConta(path);
+        List<ContaDTO> contasDTO = contaService.sincronizaContaReceita(contas);
 
-       return ResponseEntity.ok().body(contas);
-   }
+        csvConversor.gerarArquivoCSVVerificado(contasDTO);
+
+        return ResponseEntity.ok().body(contasDTO);
+    }
 
 }

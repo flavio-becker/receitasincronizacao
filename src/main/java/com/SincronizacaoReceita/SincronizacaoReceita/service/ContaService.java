@@ -29,14 +29,10 @@ public class ContaService {
 
     public List<ContaDTO> sincronizaContaReceita(List<Conta> contas) {
 
-        List<ContaDTO> contasDTO = contas.stream()
+        return contas.stream()
                 .map(conta -> contaMapper.convertContaToContaDto(conta))
+                .peek(contaDTO -> contaDTO.setStatusReceita(verificaStatusReceita(contaDTO)))
                 .collect(Collectors.toList());
-
-        contasDTO.stream()
-                .forEach(contaDTO -> contaDTO.setStatusReceita(verificaStatusReceita(contaDTO)));
-
-        return contasDTO;
     }
 
     private boolean verificaStatusReceita(ContaDTO contaDTO)  {
@@ -46,8 +42,11 @@ public class ContaService {
         try{
             return receitaService.atualizarConta(contaDTO.getAgencia(), contaDTO.getConta().replaceAll("[^0-9]", ""),
                     contaDTO.getSaldo(), contaDTO.getStatus());
-        } catch (RuntimeException | InterruptedException e) {
+        } catch (RuntimeException e) {
             throw new ReceitaSincronizacaoException("Erro ao sincronizar com a Receita. Verifique o arquivo CSV e tente novamente.");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ReceitaSincronizacaoException("Erro ao sincronizar com a Receita. Tente novamente.");
         }
     }
 }

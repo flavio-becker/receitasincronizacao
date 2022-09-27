@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "885ae56f-98a5-40fb-9800-49fdd0be0b5c",
+		"name": "Receita Sinc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14656782"
+	},
+	"item": [
+		{
+			"name": "SincronizaContas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/verificacontas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"verificacontas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

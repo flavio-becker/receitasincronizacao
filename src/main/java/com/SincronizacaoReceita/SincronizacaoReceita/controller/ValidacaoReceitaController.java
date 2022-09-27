@@ -18,6 +18,8 @@ import java.util.List;
 @RequestMapping(value = "/verificacontas")
 public class ValidacaoReceitaController {
 
+    private final String path = "C:/VerificacaoReceita/Contas.csv";
+
     ContaService contaService;
 
     CSVConversor csvConversor;
@@ -29,7 +31,7 @@ public class ValidacaoReceitaController {
     }
 
     @PostMapping
-    public ResponseEntity<List<ContaDTO>> verificacaoReceita(@RequestHeader(value = "path") String path) throws CsvException {
+    public ResponseEntity<List<ContaDTO>> verificacaoReceita() throws CsvException {
 
         List<Conta> contas = csvConversor.conversorCSVtoConta(path);
         List<ContaDTO> contasDTO = contaService.sincronizaContaReceita(contas);

@@ -21,7 +21,7 @@ Pré-requisitos: Java 11
   git clone https://github.com/flavio-becker/receitasincronizacao
   
   # entrar na pasta do projeto
-  cd receita sincronizacaoreceita
+  cd sincronizacaoreceita
   
   # executar o projeto
   ./mvn spring-boot:run
@@ -46,6 +46,8 @@ Pré-requisitos: Java 11
   4 - Salvar o arquivo csv com os dados a serem validados com o mesmo nome "Contas" dentro da pasta criada (C:\VerificacaoReceita)
   
   5 - Abrir o postman e executar a consulta (conforme collection do item 1).
+  
+  6 - Após a execução será exibido o resultado no postman e tambem será gravado na pasta criada (C:\VerificacaoReceita) um arquivo csv com o nome ContasVerificadas.csv com os resultados.
   
   
   # Autor

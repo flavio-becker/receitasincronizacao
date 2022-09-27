@@ -14,9 +14,9 @@ O projeto tem como objetivo a simulação da Sincronização de contas bancaria 
 
 # Como executar o projeto
 
-##Pré-requisitos: Java 11
+Pré-requisitos: Java 11
 
-...bash
+```bash
   # Clonar repositório
   git clone https://github.com/flavio-becker/receitasincronizacao
   
@@ -25,7 +25,7 @@ O projeto tem como objetivo a simulação da Sincronização de contas bancaria 
   
   # executar o projeto
   ./mvn spring-boot:run
-  ...
+```
   
   
   # Documentação
@@ -45,3 +45,9 @@ O projeto tem como objetivo a simulação da Sincronização de contas bancaria 
   4 - Salvar o arquivo csv com os dados a serem validados com o mesmo nome "Contas" dentro da pasta criada (C:\VerificacaoReceita)
   
   5 - Abrir o postman e executar a consulta (conforme collection do item 1).
+  
+  
+  # Autor
+  Flávio Becker
+  
+  https://www.linkedin.com/in/flavio-becker-1ab63017/

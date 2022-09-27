@@ -2,10 +2,10 @@
 <a href="https://github.com/flavio-becker/receitasincronizacao/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/flavio-becker/receitasincronizacao"></a>
 
 # Sobre o projeto
-O projeto tem como objetivo a simulação da Sincronização de contas bancaria enviadas em um arquivo CSV para a Receita Federal afim de valida-las.
+O projeto tem como objetivo a simulação da Sincronização de contas bancarias enviadas em um arquivo CSV para a Receita Federal afim de valida-las.
 
 
-##Back end
+## Back end
 * Java
 * Spring Boot
 * Maven
@@ -25,14 +25,15 @@ Pré-requisitos: Java 11
   
   # executar o projeto
   ./mvn spring-boot:run
-```
-  
+```  
   
   # Documentação
   Após rodar o projeto é possivel ler a documentação em: localhost:8080/q/swagger-ui
   
   
   # Instrução de uso
+  
+  Após executar o projeto:
   
   1 - Importar a collection abaixo para o postman
   Collection: https://github.com/flavio-becker/receitasincronizacao/tree/main/openapi

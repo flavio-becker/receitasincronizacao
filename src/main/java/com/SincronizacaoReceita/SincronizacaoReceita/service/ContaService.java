@@ -2,8 +2,11 @@ package com.SincronizacaoReceita.SincronizacaoReceita.service;
 
 import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaDTO;
 import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaMapper;
+import com.SincronizacaoReceita.SincronizacaoReceita.exception.ReceitaSincronizacaoException;
 import com.SincronizacaoReceita.SincronizacaoReceita.model.Conta;
 import com.SincronizacaoReceita.SincronizacaoReceita.receitaMock.ReceitaService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ContaService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ContaService.class);
 
     ReceitaService receitaService = new ReceitaService();
 
@@ -29,20 +34,20 @@ public class ContaService {
                 .collect(Collectors.toList());
 
         contasDTO.stream()
-                .forEach(contaDTO -> {
-                    try {
-                        contaDTO.setStatusReceita(verificaStatusReceita(contaDTO));
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException();
-                    }
-                });
+                .forEach(contaDTO -> contaDTO.setStatusReceita(verificaStatusReceita(contaDTO)));
 
         return contasDTO;
     }
 
-    private boolean verificaStatusReceita(ContaDTO contaDTO) throws InterruptedException {
+    private boolean verificaStatusReceita(ContaDTO contaDTO)  {
 
-        return receitaService.atualizarConta(contaDTO.getAgencia(), contaDTO.getConta().replaceAll("[^0-9]", ""),
-                contaDTO.getSaldo(), contaDTO.getStatus());
+        LOG.info("Enciando conta para verificação na Receita " + contaDTO);
+
+        try{
+            return receitaService.atualizarConta(contaDTO.getAgencia(), contaDTO.getConta().replaceAll("[^0-9]", ""),
+                    contaDTO.getSaldo(), contaDTO.getStatus());
+        } catch (RuntimeException | InterruptedException e) {
+            throw new ReceitaSincronizacaoException("Erro ao sincronizar com a Receita. Verifique o arquivo CSV e tente novamente.");
+        }
     }
 }

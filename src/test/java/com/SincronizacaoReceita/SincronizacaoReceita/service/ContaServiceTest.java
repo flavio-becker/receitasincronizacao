@@ -1,21 +1,30 @@
 package com.SincronizacaoReceita.SincronizacaoReceita.service;
 
+import com.SincronizacaoReceita.SincronizacaoReceita.builder.ContaBuilder;
 import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaDTO;
 import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaMapperImpl;
+import com.SincronizacaoReceita.SincronizacaoReceita.exception.ReceitaSincronizacaoException;
 import com.SincronizacaoReceita.SincronizacaoReceita.model.Conta;
 import com.SincronizacaoReceita.SincronizacaoReceita.receitaMock.ReceitaService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static org.mockito.Mockito.*;
+
 @ExtendWith(SpringExtension.class)
 public class ContaServiceTest {
+
+    @Mock
+    ReceitaService receitaService;
 
     @InjectMocks @Spy
     ContaService contaService = new ContaService(new ContaMapperImpl());
@@ -52,43 +61,5 @@ public class ContaServiceTest {
         List<ContaDTO> contasVerificadas = contaService.sincronizaContaReceita(contas);
 
         Assertions.assertFalse(contasVerificadas.stream().allMatch(ContaDTO::isStatusReceita));
-    }
-}
-
-class ContaBuilder {
-
-    Conta conta;
-
-    public ContaBuilder() {}
-
-    public static ContaBuilder umaConta() {
-        ContaBuilder builder = new ContaBuilder();
-        builder.conta = new Conta();
-
-        return builder;
-    }
-
-    public ContaBuilder comAgencia(String agencia) {
-        conta.setAgencia(agencia);
-        return this;
-    }
-
-    public ContaBuilder comConta(String cta) {
-        conta.setConta(cta);
-        return this;
-    }
-
-    public ContaBuilder comSaldo(double saldo) {
-        conta.setSaldo(saldo);
-        return this;
-    }
-
-    public ContaBuilder comStatus(String status) {
-        conta.setStatus(status);
-        return this;
-    }
-
-    public Conta build() {
-        return this.conta;
     }
 }

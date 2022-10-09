@@ -4,6 +4,7 @@
 # Sobre o projeto
 O projeto tem como objetivo a simulação da Sincronização de contas bancarias enviadas em um arquivo CSV para a Receita Federal afim de valida-las.
 
+Esse projeto na branch main é referente a uma aplicação Standalone. Caso você queira rodar como uma API o codigo está na branch API_receitasincronizacao.
 
 ## Back end
 * Java
@@ -35,19 +36,21 @@ Pré-requisitos: Java 11
   
   Após executar o projeto:
   
-  1 - Importar a collection abaixo para o postman
-  Collection: https://github.com/flavio-becker/receitasincronizacao/tree/main/openapi
+    
+  1 - Criar uma pasta na onde será adiciona o arquivo csv com asd contas para validação. Exemplo: (C:\VerificacaoReceita)
   
-  2 - Criar uma pasta na raiz c: com o nome "VerificacaoReceita" (C:\VerificacaoReceita)
-  
-  3 - Utilizar o arquivo de exemplo no link abaixo respeitando a posição das colunas e seu cabeçalho.   
+  2 - Utilizar o arquivo de exemplo no link abaixo respeitando a posição das colunas e seu cabeçalho.   
   https://github.com/flavio-becker/receitasincronizacao/blob/main/assets/Contas.csv
   
-  4 - Salvar o arquivo csv com os dados a serem validados com o mesmo nome "Contas" dentro da pasta criada (C:\VerificacaoReceita)
+  3 - Salvar o arquivo csv com os dados a serem validados com o mesmo nome "Contas" dentro da pasta criada. No nosso exemplo (C:\VerificacaoReceita)
   
-  5 - Abrir o postman e executar a consulta (conforme collection do item 1).
+  4 - Rodar o projeto. Aparecerá uma tela conforme a imagem abaixo.
   
-  6 - Após a execução será exibido o resultado no postman e tambem será gravado na pasta criada (C:\VerificacaoReceita) um arquivo csv com o nome ContasVerificadas.csv com os resultados.
+  5 - Inserir a pasta onde o arquivo de contas a serem validadas está e clicar no botão "Validar". Exemplo: (C:\VerificacaoReceita)
+  
+  6 - Após a execução será exibido uma mensagem informando se a validação ocorreu com sucesso ou não.
+  
+  7 - O Arquivo validado estará na pasta informada, junto com o arquivo Contas.csv, com o nome ContasVerificadas.csv
   
   
   # Autor

@@ -19,8 +19,7 @@ public class CSVConversor {
 
     public List<Conta> conversorCSVtoConta(String path) throws CsvException {
 
-        ColumnPositionMappingStrategy mappingStrategy =
-                new ColumnPositionMappingStrategy();
+        ColumnPositionMappingStrategy mappingStrategy = new ColumnPositionMappingStrategy();
         mappingStrategy.setType(Conta.class);
 
         try {
@@ -40,8 +39,13 @@ public class CSVConversor {
         }
     }
 
-    public void gerarArquivoCSVVerificado(List<ContaDTO> contas) throws CsvException {
-        final String path = "C:/VerificacaoReceita/ContasVerificadas.csv";
+    public void gerarArquivoCSVVerificado(List<ContaDTO> contas, String subPath) throws CsvException {
+        final String ARQUIVO = "/ContasVerificadas.csv";
+
+        String path = new StringBuffer()
+                .append(subPath)
+                .append(ARQUIVO)
+                .toString();
 
         ColumnPositionMappingStrategy mappingStrategy =
                 new ColumnPositionMappingStrategy();

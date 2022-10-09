@@ -5,6 +5,8 @@ import com.SincronizacaoReceita.SincronizacaoReceita.dto.ContaMapper;
 import com.SincronizacaoReceita.SincronizacaoReceita.exception.ReceitaSincronizacaoException;
 import com.SincronizacaoReceita.SincronizacaoReceita.model.Conta;
 import com.SincronizacaoReceita.SincronizacaoReceita.receitaMock.ReceitaService;
+import com.SincronizacaoReceita.SincronizacaoReceita.util.CSVConversor;
+import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

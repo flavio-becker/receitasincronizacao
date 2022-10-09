@@ -46,6 +46,8 @@ Pré-requisitos: Java 11
   
   4 - Rodar o projeto. Aparecerá uma tela conforme a imagem abaixo.
   
+  ![Alt text](https://github.com/flavio-becker/receitasincronizacao/blob/main/assets/tela.PNG?raw=true "Title")
+  
   5 - Inserir a pasta onde o arquivo de contas a serem validadas está e clicar no botão "Validar". Exemplo: (C:\VerificacaoReceita)
   
   6 - Após a execução será exibido uma mensagem informando se a validação ocorreu com sucesso ou não.

@@ -4,6 +4,7 @@
 # Sobre o projeto
 O projeto tem como objetivo a simulação da Sincronização de contas bancarias enviadas em um arquivo CSV para a Receita Federal afim de valida-las.
 
+Esse projeto na branch API_receitasincronizacao é referente a uma API. Caso você queira rodar como uma aplicação Standalone o codigo está na branch main.
 
 ## Back end
 * Java
